@@ -13,7 +13,7 @@ const FixMeTodo = () => {
     toggleDone,
     removeTask,
   } = useTodo();
-
+  console.log('notDoneList', notDoneList)
   return (
     <Container>
       <h2 className="mb-4 text-center"> Fix Me Todo </h2>

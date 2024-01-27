@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 export type TodoType = {
   id: string;
   done: boolean;
-  task: string;
+  task?: string;
 };
 
 const useFixMeA = () => {
@@ -15,6 +15,8 @@ const useFixMeA = () => {
   const createTodo = useCallback(() => {
     const id = nanoid();
     // Fix code here
+    const obj: TodoType = { id, task: inputRef.current?.value, done: false };
+    setTodo((prevState) => [...prevState, obj])
   }, []);
 
   // Updating Task
@@ -22,7 +24,7 @@ const useFixMeA = () => {
     setTodo((prev) =>
       prev.reduce((cur, next) => {
         // Fix code her
-        return [...cur, next];
+        return [...cur, next.id === taskId ? { ...next, task: taskMessage } : next];
       }, [] as TodoType[])
     );
   }, []);
@@ -32,7 +34,7 @@ const useFixMeA = () => {
     setTodo((prev) =>
       prev.reduce((cur, next) => {
         // Fix code here
-        return [...cur, next];
+        return [...cur, next.id === task.id ? { ...next, done: !next.done } : next];
       }, [] as TodoType[])
     );
   }, []);
@@ -40,22 +42,14 @@ const useFixMeA = () => {
   // Removing From Todo List
   const removeTask = useCallback((task: TodoType) => {
     // Fix code here
-    setTodo((prev) => prev.filter((item) => item));
+    setTodo((prev) => prev.filter((item) => item.id !== task.id));
   }, []);
 
   // Showing the finished list
-  const doneList = useMemo<TodoType[]>(
-    // Fix code here
-    () => todo.filter((task) => task),
-    [todo]
-  );
+  const doneList = useMemo<TodoType[]>(() => todo.filter((task) => task.done), [todo]);
 
   // Showing the todo list
-  const notDoneList = useMemo<TodoType[]>(
-    // Fix code here
-    () => todo.filter((task) => task),
-    [todo]
-  );
+  const notDoneList = useMemo<TodoType[]>(() => todo.filter((task) => !task.done), [todo]);
 
   // When Creating New Todo by Enter Keypress
   const onEnterKey = useCallback(

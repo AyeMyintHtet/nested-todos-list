@@ -44,9 +44,8 @@ const NestedItem = ({
     <div>
       <h1 className="px-1 py-1 mb-1 hover:bg-[#fafafa] flex">
         <span
-          className={`w-[24px] h-[24px] flex justify-center items-center mr-1 rounded-md ${
-            isThereChild && "hover:bg-[#dfdfdf] cursor-pointer "
-          }`}
+          className={`w-[24px] h-[24px] flex justify-center items-center mr-1 rounded-md ${isThereChild && "hover:bg-[#dfdfdf] cursor-pointer "
+            }`}
           onClick={handleExpend}
         >
           {isThereChild ? (item.isExpend ? "—" : "+") : " "}
@@ -54,7 +53,9 @@ const NestedItem = ({
         <span className="flex-1">{item.title} </span>
         <span
           className="inline-block cursor-pointer text-blue-500 mr-1 hover:bg-blue-100 hover:opacity-90 rounded-md w-[24px] h-[24px] flex justify-center items-center"
-          onClick={() => {}}
+          onClick={() => {
+            setIsShowInput(!isShowInput);
+          }}
         >
           <LuCross />
         </span>

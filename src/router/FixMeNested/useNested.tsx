@@ -70,8 +70,16 @@ const recursiveToggle = (
   id: string
 ): NestedItemType[] => {
   return items.reduce((cur, item) => {
+    if (item.id === id) {
+      item.isExpend = !item.isExpend;
+      return [...cur, item];
+    } else if (item.children.length > 0) {
+      const toggleCheck = recursiveToggle(item.children, id);
+      if (toggleCheck.length > 0) {
+        return [...cur, { ...item, children: toggleCheck }];
+      }
+    }
     // Start your code here
-
     return [...cur, item];
   }, [] as NestedItemType[]);
 };
@@ -82,8 +90,15 @@ const recursiveNewContent = (
   newContent: string
 ): NestedItemType[] => {
   return items.reduce((cur, item) => {
-    // Start your code here
-
+    if (item.id === id) {
+      item.children.push(makeNewContent(newContent))
+      return [...cur, item];
+    } else if (item.children.length > 0) {
+      return [
+        ...cur,
+        { ...item, children: recursiveNewContent(item.children, id, newContent) },
+      ];
+    }
     return [...cur, item];
   }, [] as NestedItemType[]);
 };
@@ -93,9 +108,12 @@ const resursiveRemove = (
   id: string
 ): NestedItemType[] => {
   return items.reduce((cur, item) => {
-    // Start your code here
-
-    return [...cur, item];
+    if (item.id !== id) {
+      const Havechildren = item.children.length ? resursiveRemove(item.children, id) : [];
+      return [...cur, Object.assign({}, item, { children: Havechildren })]
+    } else {
+      return cur;
+    }
   }, [] as NestedItemType[]);
 };
 
@@ -103,7 +121,7 @@ const useNested = () => {
   const [data, setData] = useState<NestedItemType[]>(defaultData);
 
   // Fix this hook to ensure proper functionality.
-  
+
   const onToggleExpend = useCallback((item: NestedItemType) => {
     setData((prev) => {
       return recursiveToggle(prev, item.id);
