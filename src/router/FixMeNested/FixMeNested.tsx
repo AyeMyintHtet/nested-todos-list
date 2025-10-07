@@ -7,7 +7,7 @@ const FixMeNested = () => {
 
   return (
     <Container>
-      <h2 className="mb-4 text-center"> Fix Me Nested </h2>
+      <h2 className="mb-4 text-center">Notes </h2>
 
       {data.map((item) => (
         <NestedItem

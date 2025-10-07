@@ -16,7 +16,7 @@ const FixMeTodo = () => {
   console.log('notDoneList', notDoneList)
   return (
     <Container>
-      <h2 className="mb-4 text-center"> Fix Me Todo </h2>
+      <h2 className="mb-4 text-center">Todo </h2>
 
       <TodoInput
         ref={inputRef}

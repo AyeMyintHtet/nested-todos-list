@@ -12,7 +12,7 @@ const TodoItem = ({
   updateTask: (id: string, task: string) => void;
 }) => {
   return (
-    <li className="flex justify-center items-center">
+    <li className="flex items-center gap-2 py-2">
       {item.done ? (
         <CiCircleCheck
           className="h-6 w-6 cursor-pointer text-green-500 hover:text-rose-500"
@@ -27,12 +27,12 @@ const TodoItem = ({
 
       <input
         type="text"
-        className={`block outline-none p-2 flex-1 ${item.done && "line-through"}`}
+        className={`input ${item.done && "line-through text-surface-400"}`}
         onChange={(e) => updateTask(item.id, e.target.value)}
         value={item.task}
       />
       <CiSquareRemove
-        className="h-6 w-6 cursor-pointer text-rose-600"
+        className="h-6 w-6 cursor-pointer text-rose-600 hover:text-rose-700"
         onClick={() => removeTask(item)}
       />
     </li>

@@ -42,17 +42,18 @@ const NestedItem = ({
 
   return (
     <div>
-      <h1 className="px-1 py-1 mb-1 hover:bg-[#fafafa] flex">
+      <h1 className="px-1 py-1 mb-1 hover:bg-surface-100 rounded-md flex items-center">
         <span
-          className={`w-[24px] h-[24px] flex justify-center items-center mr-1 rounded-md ${isThereChild && "hover:bg-[#dfdfdf] cursor-pointer "
-            }`}
+          className={`w-[24px] h-[24px] flex justify-center items-center mr-1 rounded-md ${
+            isThereChild && "hover:bg-surface-200 cursor-pointer"
+          }`}
           onClick={handleExpend}
         >
           {isThereChild ? (item.isExpend ? "—" : "+") : " "}
         </span>
         <span className="flex-1">{item.title} </span>
         <span
-          className="inline-block cursor-pointer text-blue-500 mr-1 hover:bg-blue-100 hover:opacity-90 rounded-md w-[24px] h-[24px] flex justify-center items-center"
+          className="inline-block cursor-pointer text-primary-600 mr-1 hover:bg-primary-100 hover:opacity-90 rounded-md w-[24px] h-[24px] flex justify-center items-center"
           onClick={() => {
             setIsShowInput(!isShowInput);
           }}
@@ -99,7 +100,7 @@ const NestedItem = ({
             <input
               ref={inputRef}
               type="text"
-              className="block border rounded-md outline-none p-2 flex-1"
+              className="input"
               onKeyDown={onEnterKey}
             />
           </div>

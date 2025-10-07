@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/fix-me-todo",
+    path: "/todo",
     element: (
       <>
         <FixMeTodo />
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/fix-me-nested",
+    path: "/nested",
     element: (
       <>
         <FixMeNested />
